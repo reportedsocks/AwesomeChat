@@ -44,11 +44,20 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
 
         AwesomeMessage message = getItem(position);
         int layoutResource = 0;
-        if(message.isMine()){
+        int viewType = getItemViewType(position);
+        if(viewType == 0){
             layoutResource = R.layout.my_message_item;
         } else {
             layoutResource = R.layout.your_message_item;
         }
+
+        /*
+        if(message.isMine()){
+            layoutResource = R.layout.your_message_item;
+        } else {
+            layoutResource = R.layout.my_message_item;
+        }
+        */
         if(convertView != null){
             viewHolder = (ViewHolder) convertView.getTag();
         } else {
@@ -56,15 +65,11 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
-        /*
-        if(viewType == 0){
-            layoutResource = R.layout.my_message_item;
-        } else {
-            layoutResource = R.layout.your_message_item;
-        }
 
 
-        */
+
+
+
 
         boolean isText = message.getImageUrl() == null;
         if(isText){
@@ -80,7 +85,7 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
 
         return convertView;
     }
-    /*
+
     @Override
     public int getItemViewType(int position) {
         int flag;
@@ -97,7 +102,7 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
     public int getViewTypeCount() {
         return 2;
     }
-    */
+
 
     public class ViewHolder{
         public TextView messageTextView;

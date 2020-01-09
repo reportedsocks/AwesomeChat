@@ -130,6 +130,7 @@ public class SignInActivity extends AppCompatActivity {
         user.setId(firebaseUser.getUid());
         user.setEmail(firebaseUser.getEmail());
         user.setName(userName);
+        usersDatabaseReference.push().setValue(user);
     }
 
     private boolean validateTexts(){
